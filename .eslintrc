@@ -40,8 +40,6 @@
 				"markers": ["#region", "#endregion", "region", "endregion"]
 			}
 		}],
-
-		// Remove some lines bellow when work on eslint config next time
 		"@typescript-eslint/explicit-module-boundary-types": 0,
 		"@typescript-eslint/ban-types": 0,
 		"react/require-default-props": 0,
@@ -62,7 +60,14 @@
 		],
 		"no-param-reassign": 0,
 		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": "warn"
+		"react-hooks/exhaustive-deps": "warn",
+		"react/function-component-definition": [
+			2,
+			{
+				"namedComponents": "arrow-function",
+				"unnamedComponents": "arrow-function"
+			}
+		]
 	},
 	"env": {
 		"browser": true,
