@@ -1,4 +1,5 @@
 export * from './components'
-export * from './utils'
-export * from './transport'
+export * from './lib'
+export * from './api'
 export * from './types'
+export * from './HOC'
