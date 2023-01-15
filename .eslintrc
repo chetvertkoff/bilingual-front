@@ -67,7 +67,8 @@
 				"namedComponents": "arrow-function",
 				"unnamedComponents": "arrow-function"
 			}
-		]
+		],
+		"no-useless-constructor": "off"
 	},
 	"env": {
 		"browser": true,

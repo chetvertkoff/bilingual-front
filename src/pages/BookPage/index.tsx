@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Layouts, withLayout } from '@/common'
 import { bookActions } from '@/enteties/book'
-import { BookReadComponent } from '@/features/bookRead'
+import { BookRead } from '@/features/bookRead'
 
 const Book = () => {
 	const { id } = useParams()
@@ -13,7 +13,7 @@ const Book = () => {
 
 	return (
 		<div>
-			<BookReadComponent />
+			<BookRead />
 		</div>
 	)
 }

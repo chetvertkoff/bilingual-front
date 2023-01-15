@@ -3,8 +3,11 @@ import { observer } from 'mobx-react-lite'
 import { bookState } from '@/enteties/book'
 import { Reader } from '@/features/bookRead/lib'
 import { toJS } from 'mobx'
+import { Paragraph } from '@/features/bookRead'
+import './style.scss'
+import { Box } from '@mui/material'
 
-export const BookReadComponent = observer(() => {
+export const BookRead = observer(() => {
 	const [state] = useState(bookState)
 	const [reader, setReader] = useState(new Reader([]))
 	// console.log(toJS(state))
@@ -15,6 +18,14 @@ export const BookReadComponent = observer(() => {
 	// console.log(reader.chapters)
 	// reader.generateHtmlPage()
 	// console.log(reader.chapters)
-	console.log(reader.generateHtmlPage())
-	return <div dangerouslySetInnerHTML={{ __html: reader.generateHtmlPage() }} />
+
+	return (
+		<div className="book-read">
+			<Box sx={{ pl: '10px', pr: '10px' }}>
+				{reader.chapterParagraphs.map((ch) => (
+					<Paragraph key={ch.id} item={ch} />
+				))}
+			</Box>
+		</div>
+	)
 })

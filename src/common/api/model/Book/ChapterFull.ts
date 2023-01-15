@@ -3,7 +3,7 @@ import { BaseModel } from '../BaseModel'
 export class ChapterFull extends BaseModel {
 	constructor(
 		public id?: number,
-		public createdDate: string = '',
+		public createdDate = '',
 		public originalText: string = '',
 		public translate: string = '',
 		public tagName: string = ''
