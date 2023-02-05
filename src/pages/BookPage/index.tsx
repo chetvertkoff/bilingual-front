@@ -3,12 +3,15 @@ import { useParams } from 'react-router-dom'
 import { Layouts, withLayout } from '@/common'
 import { bookActions } from '@/enteties/book'
 import { BookRead } from '@/features/bookRead'
+import { bookStore } from '@/enteties/book/model/BookStore'
+
+const { loadBook } = bookStore
 
 const Book = () => {
 	const { id } = useParams()
 
 	useEffect(() => {
-		bookActions.loadBook(Number(id))
+		loadBook(Number(id))
 	}, [])
 
 	return (

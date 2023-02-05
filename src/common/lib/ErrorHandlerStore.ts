@@ -1,12 +1,16 @@
 import { observable, runInAction } from 'mobx'
 import { ErrorMessage } from '@/common'
 
-export interface ErrorHandler {
+export class ErrorHandlerStore {
+	constructor() {}
+}
+
+export interface ErrorHandlerStore {
 	error: Set<ErrorMessage | unknown>
 	errorList: ErrorMessage[]
 }
 
-export const errorHandler = observable<ErrorHandler>({
+export const errorHandler = observable<ErrorHandlerStore>({
 	error: new Set(),
 
 	get errorList() {

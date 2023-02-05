@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import { ChapterFull, Indent } from '@/common'
 import './style.scss'
-import classNames from 'classnames'
 import { Box, ClickAwayListener, Popover, Tooltip, Typography } from '@mui/material'
 import { Word } from '@/features/bookRead/ui/Word'
 import { splitParagraph } from '../lib'
