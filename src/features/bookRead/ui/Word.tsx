@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react'
 import { WordData } from '@/features/bookRead/lib'
 import { Popover, Typography } from '@mui/material'
-import { bookActions, bookState, translatedText, translatedTextState } from '@/enteties/book'
-import { observer } from 'mobx-react-lite'
+import { BookStore } from '@/enteties/book'
+
+const { loadTranslate } = BookStore
 
 export const Word: FC<{ word: WordData }> = ({ word: { text, needTranslate } }) => {
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
@@ -13,7 +14,7 @@ export const Word: FC<{ word: WordData }> = ({ word: { text, needTranslate } }) 
 		setAnchorEl(event.currentTarget)
 		if (translate) return
 		setLoading(true)
-		const tr = await bookActions.loadTranslate(text)
+		const tr = await loadTranslate(text)
 		setTranslate(tr)
 		setLoading(false)
 	}

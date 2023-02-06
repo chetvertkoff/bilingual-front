@@ -1,6 +1,6 @@
 import { BaseModel } from '../BaseModel'
 
-export class ChapterFull extends BaseModel {
+export class ChapterFullModel extends BaseModel {
 	constructor(
 		public id?: number,
 		public createdDate = '',

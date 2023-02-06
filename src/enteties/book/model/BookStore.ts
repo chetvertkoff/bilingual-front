@@ -1,28 +1,30 @@
-import { BaseStore } from '@/common/lib/BaseStore'
-import { BaseState, Book, bookApi } from '@/common'
-import { runInAction } from 'mobx'
+import { BookModel, bookApi } from '@/common'
+import { makeAutoObservable } from 'mobx'
+import { externalApi } from '@/common/api/external'
 
-interface State extends BaseState {
-	book: null | Book
-}
+export class BookStore {
+	book: null | BookModel = null
+	isLoading = false
 
-const state: State = {
-	book: null,
-	isLoading: false,
-}
-export class BookStore extends BaseStore<State> {
-	constructor(state: State) {
-		super(state)
+	constructor() {
+		makeAutoObservable(this)
 	}
 
 	loadBook = async (id: number) => {
 		try {
-			this.updateStoreValue('isLoading', true)
+			this.isLoading = true
 			const res = await bookApi.getBilingual(id)
-			this.updateStoreValue('book', res)
-			this.updateStoreValue('isLoading', false)
+			res.chapters = res.chapters.slice(0, 4)
+			this.book = res
+			this.isLoading = false
+		} catch (e) {}
+	}
+
+	static loadTranslate = async (text: string) => {
+		try {
+			return externalApi.getTranslate(text)
 		} catch (e) {}
 	}
 }
 
-export const bookStore = new BookStore(state)
+export const bookStore = new BookStore()

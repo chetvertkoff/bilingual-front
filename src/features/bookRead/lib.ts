@@ -1,14 +1,3 @@
-import { Chapter, ChapterFull } from '@/common'
-
-export class Reader {
-	constructor(public chapters: Chapter[] = []) {}
-
-	public get chapterParagraphs(): ChapterFull[] {
-		if (!this.chapters[0]?.chaptersFull?.length || !this.chapters[0]?.id) return []
-		return this.chapters.flatMap((ch) => ch.chaptersFull?.flatMap((chFull) => chFull) ?? [])
-	}
-}
-
 export interface WordData {
 	text: string
 	needTranslate: boolean

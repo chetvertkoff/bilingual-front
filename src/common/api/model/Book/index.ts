@@ -1,3 +1,3 @@
-export * from './Chapter'
-export * from './ChapterFull'
-export * from './Book'
+export * from './ChapterModel'
+export * from './ChapterFullModel'
+export * from './BookModel'

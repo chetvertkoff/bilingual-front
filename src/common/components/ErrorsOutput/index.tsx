@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Alert, Snackbar } from '@mui/material'
 import { observer } from 'mobx-react-lite'
-import { errorHandler } from '@/common'
+import { errorHandlerStore } from '@/common'
 
 export const ErrorsOutput = observer(() => {
-	const [errorHandlerState] = useState(errorHandler)
-	const { errorList } = errorHandlerState
+	const { errorList } = errorHandlerStore
 
 	return (
 		<>

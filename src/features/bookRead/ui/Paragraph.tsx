@@ -1,11 +1,13 @@
 import React, { FC, useState } from 'react'
-import { ChapterFull, Indent } from '@/common'
+import { ChapterFullModel } from '@/common'
 import './style.scss'
-import { Box, ClickAwayListener, Popover, Tooltip, Typography } from '@mui/material'
+import { Box, ClickAwayListener, Tooltip, Typography } from '@mui/material'
 import { Word } from '@/features/bookRead/ui/Word'
 import { splitParagraph } from '../lib'
 
-export const Paragraph: FC<{ item: ChapterFull }> = ({ item: { originalText, translate } }) => {
+export const Paragraph: FC<{ item: ChapterFullModel }> = ({
+	item: { originalText, translate },
+}) => {
 	const [showTranslate, setShowTranslate] = useState(false)
 
 	const splittedTextCollection = splitParagraph(originalText)

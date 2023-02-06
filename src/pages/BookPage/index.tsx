@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Layouts, withLayout } from '@/common'
-import { bookActions } from '@/enteties/book'
 import { BookRead } from '@/features/bookRead'
 import { bookStore } from '@/enteties/book/model/BookStore'
 

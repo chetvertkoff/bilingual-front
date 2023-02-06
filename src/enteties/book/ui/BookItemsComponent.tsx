@@ -1,19 +1,21 @@
-import React, { FC, useEffect, useState } from 'react'
-import { bookActions, bookListState, BookState } from '@/enteties/book'
+import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Box, Card, CardMedia, Grid } from '@mui/material'
 import * as noimage from '@/common/assets/img/noimage.jpg'
 import { Callback } from '@/common'
+import { bookListStore } from '@/enteties/book/model/BookListStore'
+import { BookModel } from '@/common/api/model/Book/BookModel'
+
+const { loadBooks } = bookListStore
 
 interface Props {
-	onItemClick?: Callback<BookState['book']>
+	onItemClick?: Callback<BookModel>
 }
 export const BookItemsComponent: FC<Props> = observer(({ onItemClick }) => {
-	const [state] = useState(bookListState)
-	const { bookList } = state
+	const { bookList } = bookListStore
 
 	useEffect(() => {
-		bookActions.loadBooks()
+		loadBooks()
 	}, [])
 
 	return (
