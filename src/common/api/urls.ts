@@ -1,8 +1,10 @@
 export const urls = {
 	book: {
 		createBilingual: 'book/create-bilingual',
-		getBilingual: 'book/bilingual/:id',
-		getBilinguals: 'book/bilingual',
+		getBook: 'book/:id',
+		getBooks: 'book',
 		getTranslate: 'book/translate',
+		getChapters: 'book/chapter',
+		getParagraph: 'book/paragraph',
 	},
 }

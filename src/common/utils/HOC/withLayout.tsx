@@ -5,7 +5,7 @@ export enum Layouts {
 	APP,
 	BOOK_READ,
 }
-
+// убрать layout
 const LayoutComponents = {
 	[Layouts.APP]: AppLayout,
 	[Layouts.BOOK_READ]: BookReadLayout,

@@ -1,7 +1,4 @@
-export interface WordData {
-	text: string
-	needTranslate: boolean
-}
+import { WordData } from '@/features/bookRead'
 
 const validateWord = (text: string) => {
 	if (text.length < 3 || /\d/.test(text)) return false

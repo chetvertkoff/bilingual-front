@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { WordData } from '@/features/bookRead/lib'
+import { WordData } from '@/features/bookRead/utils/lib'
 import { Popover, Typography } from '@mui/material'
 import { BookStore } from '@/enteties/book'
 

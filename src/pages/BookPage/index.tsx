@@ -1,22 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Layouts, withLayout } from '@/common'
 import { BookRead } from '@/features/bookRead'
-import { bookStore } from '@/enteties/book/model/BookStore'
-
-const { loadBook } = bookStore
 
 const Book = () => {
 	const { id } = useParams()
 
-	useEffect(() => {
-		loadBook(Number(id))
-	}, [])
+	if (!id) return null
 
-	return (
-		<div>
-			<BookRead />
-		</div>
-	)
+	return <BookRead bookId={id} />
 }
 export default withLayout(Book, Layouts.BOOK_READ)

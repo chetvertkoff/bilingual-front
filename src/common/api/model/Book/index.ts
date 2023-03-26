@@ -1,3 +1,3 @@
 export * from './ChapterModel'
-export * from './ChapterFullModel'
+export * from './ParagraphModel'
 export * from './BookModel'

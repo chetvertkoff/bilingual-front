@@ -1,20 +1,25 @@
-import { makeAutoObservable } from 'mobx'
-import { ChapterFullModel } from '@/common'
+import { makeAutoObservable, makeObservable, runInAction } from 'mobx'
+import { apiRequest, BaseRequestParams, bookApi, ChapterModel, ParagraphModel } from '@/common'
 import { bookStore, BookStore } from '@/enteties/book'
 
 class ChapterStore {
-	bookStore: null | BookStore = null
+	loading = false
+	chapters: ChapterModel[] = []
 
-	constructor(bookStore: BookStore) {
+	constructor() {
 		makeAutoObservable(this)
-		this.bookStore = bookStore
 	}
 
-	get chapterParagraphs(): ChapterFullModel[] {
-		const chapters = this.bookStore?.book?.chapters ?? []
-		if (!chapters[0]?.chaptersFull?.length || !chapters[0]?.id) return []
-		return chapters.flatMap((ch) => ch.chaptersFull?.flatMap((chFull) => chFull) ?? [])
+	loadChaptersByParams = async <T extends BaseRequestParams>(params: T, clear?: boolean) => {
+		try {
+			this.loading = true
+
+			const res = await bookApi.getChapter(params)
+			this.chapters = clear ? res.entries : [...this.chapters, ...res.entries]
+		} finally {
+			this.loading = false
+		}
 	}
 }
 
-export const chapterStore = new ChapterStore(bookStore)
+export const chapterStore = new ChapterStore()

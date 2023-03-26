@@ -1,22 +1,23 @@
 import React, { FC, useState } from 'react'
-import { ChapterFullModel } from '@/common'
+import { ParagraphModel } from '@/common'
 import './style.scss'
 import { Box, ClickAwayListener, Tooltip, Typography } from '@mui/material'
 import { Word } from '@/features/bookRead/ui/Word'
-import { splitParagraph } from '../lib'
+import { splitParagraph } from '@/features/bookRead'
 
-export const Paragraph: FC<{ item: ChapterFullModel }> = ({
-	item: { originalText, translate },
-}) => {
+export const Paragraph: FC<{
+	originalText: ParagraphModel['originalText']
+	translate: ParagraphModel['translate']
+}> = ({ originalText, translate }) => {
 	const [showTranslate, setShowTranslate] = useState(false)
 
-	const splittedTextCollection = splitParagraph(originalText)
+	const splitTextCollection = splitParagraph(originalText)
 
 	return (
 		<div className="paragraph">
 			<Box sx={{ display: 'flex' }}>
 				<Box sx={{ mt: '10px', mb: '10px' }}>
-					{splittedTextCollection.map((word) => (
+					{splitTextCollection.map((word) => (
 						<Word word={word} />
 					))}
 				</Box>
