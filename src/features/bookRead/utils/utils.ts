@@ -1,8 +1,7 @@
 import { WordData } from '@/features/bookRead'
 
 const validateWord = (text: string) => {
-	if (text.length < 3 || /\d/.test(text)) return false
-	return true
+	return /[a-zA-Z]+/g.test(text)
 }
 
 export const splitParagraph = (paragraph: string): WordData[] => {

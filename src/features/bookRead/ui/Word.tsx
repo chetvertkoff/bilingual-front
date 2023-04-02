@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react'
-import { WordData } from '@/features/bookRead/utils/lib'
+import React, { FC, memo, useState } from 'react'
 import { Popover, Typography } from '@mui/material'
 import { BookStore } from '@/enteties/book'
+import { WordData } from '@/features/bookRead/utils/lib'
 
 const { loadTranslate } = BookStore
 
-export const Word: FC<{ word: WordData }> = ({ word: { text, needTranslate } }) => {
+export const Word: FC<{ word: WordData }> = memo(({ word: { text, needTranslate } }) => {
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [translate, setTranslate] = useState('')
@@ -44,4 +44,4 @@ export const Word: FC<{ word: WordData }> = ({ word: { text, needTranslate } }) 
 			</span>{' '}
 		</span>
 	)
-}
+})

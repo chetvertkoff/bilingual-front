@@ -1,40 +1,22 @@
-import React, { FC, PropsWithChildren, useEffect, useRef } from 'react'
+import React, { FC, PropsWithChildren, useRef } from 'react'
 import { Callback } from '@/common'
-import { useInView } from 'react-intersection-observer'
 
 interface Props extends PropsWithChildren {
 	onTop?: Callback
 	onBottom?: Callback
-	onChangeScrollHeight?: Callback
 }
 
-export const BookScrollContainer: FC<Props> = ({
-	children,
-	onBottom,
-	onTop,
-	onChangeScrollHeight,
-}) => {
-	const container = useRef<HTMLDivElement>()
-	const scrollContainer = useRef<HTMLDivElement>()
-	const scrollContainerHeight = useRef()
+export const BookScrollContainer: FC<Props> = ({ children, onBottom, onTop }) => {
+	const container = useRef<HTMLDivElement>(null)
+	const scrollContainer = useRef<HTMLDivElement>(null)
 
-	if (
-		scrollContainerHeight.current &&
-		scrollContainer.current &&
-		scrollContainerHeight.current !== scrollContainer.current.scrollHeight
-	) {
-		const isHigh = scrollContainer.current?.scrollHeight > container.current?.clientHeight
-		onChangeScrollHeight?.(isHigh)
-		console.log('change')
-	}
-
-	const onScroll = (e) => {
-		const { target } = e
-		if (target.scrollTop <= 0) {
-			console.log('top')
+	const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
+		const { currentTarget } = e
+		if (currentTarget.scrollTop <= 0) {
+			onTop?.()
 		}
-		if (target.scrollHeight - target.scrollTop <= target.clientHeight) {
-			console.log('bottom')
+		if (currentTarget.scrollHeight - currentTarget.scrollTop - 1 <= currentTarget.clientHeight) {
+			onBottom?.()
 		}
 	}
 

@@ -1,12 +1,12 @@
-import React, { createRef, FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { ChaptersRequestParams, Paragraph } from '@/features/bookRead'
+import { Paragraph } from '@/features/bookRead'
 import './style.scss'
 import { Box } from '@mui/material'
-import { chapterStore } from '@/enteties/book/model/ChapterStore'
 import { ParagraphRequestParams } from '@/features/bookRead/utils/ParagraphRequestParams'
 import { paragraphStore } from '@/enteties/book'
 import { BookScrollContainer } from '@/features/bookRead/ui/BookScrollContainer'
+import { useVirtualList } from '@/features/bookRead/utils/useVirtualList'
 
 const { loadParagraphsByParams } = paragraphStore
 
@@ -14,20 +14,29 @@ interface ComponentProps {
 	bookId: string
 }
 export const BookRead: FC<ComponentProps> = observer(({ bookId }) => {
-	const { paragraphs } = paragraphStore
+	const { paragraphs, firstParagraph, lastParagraph } = paragraphStore
 
-	const onScrollBottom = () => {
-		console.log('bottom')
-	}
+	// const {} = useVirtualList({
+	// 	dataCount: paragraphs.length
+	// })
 
 	useEffect(() => {
 		if (!bookId) return
 		loadParagraphsByParams(new ParagraphRequestParams({ book_id: bookId }))
 	}, [bookId])
 
-	const onChangeScrollHeight = (isHigh) => {
-		console.log(isHigh)
-		if (isHigh) return
+	const onScrollTop = () => {
+		if (firstParagraph?.id === paragraphs[0]?.id) return
+		loadParagraphsByParams(
+			new ParagraphRequestParams({
+				id_less_than: String(paragraphs[0].id),
+				book_id: bookId,
+			})
+		)
+	}
+
+	const onScrollBottom = () => {
+		if (lastParagraph?.id === paragraphs[paragraphs.length - 1]?.id) return
 		loadParagraphsByParams(
 			new ParagraphRequestParams({
 				id_more_than: String(paragraphs[paragraphs.length - 1].id),
@@ -37,12 +46,10 @@ export const BookRead: FC<ComponentProps> = observer(({ bookId }) => {
 	}
 
 	return (
-		<BookScrollContainer onChangeScrollHeight={onChangeScrollHeight}>
-			<Box sx={{ pl: '10px', pr: '10px' }}>
-				{paragraphs.map((p) => (
-					<Paragraph originalText={p.originalText} translate={p.translate} />
-				))}
-			</Box>
+		<BookScrollContainer onTop={onScrollTop} onBottom={onScrollBottom}>
+			{paragraphs.map((p) => (
+				<Paragraph originalText={p.originalText} translate={p.translate} />
+			))}
 		</BookScrollContainer>
 	)
 })

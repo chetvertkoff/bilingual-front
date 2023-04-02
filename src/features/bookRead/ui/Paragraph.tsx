@@ -14,37 +14,40 @@ export const Paragraph: FC<{
 	const splitTextCollection = splitParagraph(originalText)
 
 	return (
-		<div className="paragraph">
-			<Box sx={{ display: 'flex' }}>
-				<Box sx={{ mt: '10px', mb: '10px' }}>
-					{splitTextCollection.map((word) => (
-						<Word word={word} />
-					))}
+		<Box sx={{ pl: '10px', pr: '10px' }}>
+			<div className="paragraph">
+				<Box sx={{ display: 'flex' }}>
+					<Box sx={{ mt: '10px', mb: '10px' }}>
+						{splitTextCollection.map((word, i) => (
+							// eslint-disable-next-line react/no-array-index-key
+							<Word key={i} word={word} />
+						))}
+					</Box>
+					<Box sx={{ p: '10px', display: 'flex', alignItems: 'center' }}>
+						<ClickAwayListener onClickAway={() => setShowTranslate(false)}>
+							<div>
+								<Tooltip
+									PopperProps={{
+										disablePortal: true,
+									}}
+									arrow
+									onClose={() => setShowTranslate(false)}
+									open={showTranslate}
+									disableFocusListener
+									disableHoverListener
+									disableTouchListener
+									title={<Typography color="inherit">{translate}</Typography>}
+									placement="top-start"
+								>
+									<div className="paragraph__icon" onClick={() => setShowTranslate(!showTranslate)}>
+										11
+									</div>
+								</Tooltip>
+							</div>
+						</ClickAwayListener>
+					</Box>
 				</Box>
-				<Box sx={{ p: '10px', display: 'flex', alignItems: 'center' }}>
-					<ClickAwayListener onClickAway={() => setShowTranslate(false)}>
-						<div>
-							<Tooltip
-								PopperProps={{
-									disablePortal: true,
-								}}
-								arrow
-								onClose={() => setShowTranslate(false)}
-								open={showTranslate}
-								disableFocusListener
-								disableHoverListener
-								disableTouchListener
-								title={<Typography color="inherit">{translate}</Typography>}
-								placement="top-start"
-							>
-								<div className="paragraph__icon" onClick={() => setShowTranslate(!showTranslate)}>
-									11
-								</div>
-							</Tooltip>
-						</div>
-					</ClickAwayListener>
-				</Box>
-			</Box>
-		</div>
+			</div>
+		</Box>
 	)
 }
