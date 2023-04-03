@@ -1,12 +1,10 @@
 import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { Paragraph } from '@/features/bookRead'
-import './style.scss'
-import { Box } from '@mui/material'
 import { ParagraphRequestParams } from '@/features/bookRead/utils/ParagraphRequestParams'
 import { paragraphStore } from '@/enteties/book'
 import { BookScrollContainer } from '@/features/bookRead/ui/BookScrollContainer'
-import { useVirtualList } from '@/features/bookRead/utils/useVirtualList'
+import './style.scss'
 
 const { loadParagraphsByParams } = paragraphStore
 
@@ -15,10 +13,6 @@ interface ComponentProps {
 }
 export const BookRead: FC<ComponentProps> = observer(({ bookId }) => {
 	const { paragraphs, firstParagraph, lastParagraph } = paragraphStore
-
-	// const {} = useVirtualList({
-	// 	dataCount: paragraphs.length
-	// })
 
 	useEffect(() => {
 		if (!bookId) return

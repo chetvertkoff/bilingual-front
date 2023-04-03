@@ -1,21 +1,21 @@
 import React from 'react'
 import { Alert, Snackbar } from '@mui/material'
 import { observer } from 'mobx-react-lite'
-import { errorHandlerStore } from '@/common'
+import { notificationHandlerStore } from '@/common'
 
-export const ErrorsOutput = observer(() => {
-	const { errorList } = errorHandlerStore
+export const MessageOutput = observer(() => {
+	const { notificationList } = notificationHandlerStore
 
 	return (
 		<>
-			{errorList.map((errorMessage) => (
+			{notificationList.map((item) => (
 				<Snackbar
-					key={errorMessage.message}
+					key={item.message}
 					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
 					open
 					autoHideDuration={6000}
 				>
-					<Alert severity="error">{errorMessage.message}</Alert>
+					<Alert severity={item.type}>{item.message}</Alert>
 				</Snackbar>
 			))}
 		</>

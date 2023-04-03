@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import './style.scss'
-import { ErrorsOutput } from '@/common'
+import { MessageOutput } from '@/common'
 
 export const AppLayout: FC<{ children: JSX.Element }> = ({ children }) => (
 	<div>
-		<ErrorsOutput />
+		<MessageOutput />
 		{children}
 	</div>
 )

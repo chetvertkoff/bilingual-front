@@ -1,4 +1,4 @@
 export * from './AppLayout'
-export * from './ErrorsOutput'
+export * from './MessageOutput'
 export * from './ErrorBoundary'
 export * from './BookReadLayout'

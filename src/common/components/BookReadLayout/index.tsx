@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import { ErrorsOutput } from '@/common'
+import { MessageOutput } from '@/common'
 
 export const BookReadLayout: FC<{ children: JSX.Element }> = ({ children }) => (
 	<>
-		<ErrorsOutput />
+		<MessageOutput />
 		{children}
 	</>
 )

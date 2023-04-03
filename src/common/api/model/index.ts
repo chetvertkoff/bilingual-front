@@ -1,3 +1,3 @@
-export * from './ErrorMessage'
+export * from './NotificationModel'
 export * from './BaseModel'
 export * from './Book'

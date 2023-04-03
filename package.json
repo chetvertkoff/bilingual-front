@@ -66,6 +66,7 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.3",
     "react-router-dom": "^6.4.3",
-    "react-virtualized": "^9.22.3"
+    "react-virtualized": "^9.22.3",
+    "uui": "^1.0.7"
   }
 }
