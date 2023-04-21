@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { notificationHandlerStore } from '@/common'
 
 export const MessageOutput = observer(() => {
-	const { notificationList } = notificationHandlerStore
+	const { notificationList, t } = notificationHandlerStore
 
 	return (
 		<>

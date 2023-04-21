@@ -1,0 +1,13 @@
+.BookLayout {
+  background-color: #fafafa;
+
+  &_content {
+    margin: 0 auto;
+    padding: 64px 0 48px;
+    max-width: 600px;
+  }
+ &_footer {
+   padding: 48px;
+   background-color: #fff;
+ }
+}

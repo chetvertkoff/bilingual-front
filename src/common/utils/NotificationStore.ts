@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 export class NotificationStore {
 	notifications: Map<string, NotificationModel | unknown> = new Map()
 
+	t = []
+
 	constructor() {
 		makeAutoObservable(this)
 	}
