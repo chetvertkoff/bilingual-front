@@ -24,7 +24,7 @@ export const bookApi = {
 	},
 
 	getBooks: async () => {
-		const res = await apiRequest.get<BookModel[]>(urls.book.getBooks)
+		const res = await apiRequest.get<ResponseCatalog<BookModel>>(urls.book.getBooks)
 		return res.data
 	},
 

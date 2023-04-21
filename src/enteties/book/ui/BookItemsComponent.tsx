@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Box, Card, CardMedia, Grid } from '@mui/material'
+import { Box, Card, CardMedia, Grid, LinearProgress } from '@mui/material'
 import * as noimage from '@/common/assets/img/noimage.jpg'
 import { Callback } from '@/common'
 import { bookListStore } from '@/enteties/book/model/BookListStore'
@@ -25,6 +25,7 @@ export const BookItemsComponent: FC<Props> = observer(({ onItemClick }) => {
 					<Grid item xs={2} key={item.id} onClick={() => onItemClick?.(item)}>
 						<Card sx={{ maxWidth: 345 }}>
 							<CardMedia component="img" image={noimage.default} />
+							{item.progress && <LinearProgress variant="determinate" value={item.progress} />}
 						</Card>
 					</Grid>
 				))}

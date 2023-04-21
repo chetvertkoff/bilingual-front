@@ -12,7 +12,8 @@ export class BookListStore {
 	loadBooks = async () => {
 		try {
 			this.isLoading = true
-			this.bookList = await bookApi.getBilingualItems()
+			const res = await bookApi.getBooks()
+			this.bookList = res.entries
 			this.isLoading = false
 		} catch (e) {}
 	}
