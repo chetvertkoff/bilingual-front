@@ -1,18 +1,10 @@
 import React from 'react'
 import { BookUpload } from '@/features/bookUpload/ui'
-import { BookItemsComponent } from '@/enteties/book'
-import { BookModel, PageUrls } from '@/common'
-import { useNavigate } from 'react-router-dom'
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material'
+import { BookLibrary } from '@/features/bookLibrary'
 import './style.scss'
 
 const BooksPage = () => {
-	const navigate = useNavigate()
-
-	const moveToBook = (book: BookModel) => {
-		navigate(PageUrls.book.bookPage.replace(':id', String(book.id)))
-	}
-
 	return (
 		<div className="BookLayout">
 			<CssBaseline />
@@ -35,8 +27,12 @@ const BooksPage = () => {
 						</Box>
 					</div>
 				</div>
-
-				<BookItemsComponent onItemClick={moveToBook} />
+				<Typography component="h1" variant="h5" align="center" color="textPrimary" gutterBottom>
+					Your library
+				</Typography>
+				<div>
+					<BookLibrary />
+				</div>
 			</main>
 			<footer className="BookLayout_footer">
 				<Typography variant="h6" align="center" gutterBottom>

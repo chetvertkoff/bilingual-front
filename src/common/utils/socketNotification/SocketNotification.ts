@@ -4,6 +4,7 @@ export enum WsEvents {
 	BOOKS_REQUEST = 'BOOKS_REQUEST',
 	WELCOME = 'WELCOME',
 	TRANSLATE_BOOK_PROGRESS = 'TRANSLATE_BOOK_PROGRESS',
+	BOOK_TRANSLATED = 'BOOK_TRANSLATED',
 	PING = 'PING',
 }
 
@@ -125,7 +126,7 @@ class SocketNotification {
 
 	onMessage = (callback: Callback<SocketMessage>) => {
 		this.subscribe(SocketEvents.MESSAGE, (messageData: WorkerData<string>) => {
-			// console.log(messageData, this.ping)
+			console.log(messageData)
 			const message = JSON.parse(messageData.payload) as SocketMessage
 
 			if (message.value?.event === WsEvents.WELCOME) return

@@ -51,6 +51,7 @@ const handleMessage = (eventData: EventData, port: MessagePort) => {
 
 				currentWsState.timerId = setInterval(() => {
 					if (socket && socket.readyState === 1) {
+						console.log('pong')
 						socket.send('pong')
 					}
 				}, 30000)

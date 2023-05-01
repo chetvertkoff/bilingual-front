@@ -11,7 +11,7 @@ export class BaseRequestParams {
 	public readonly take?: number
 	public readonly order?: 'ASC' | 'DESC'
 
-	constructor(props: BaseParamsProps) {
+	constructor(props: BaseParamsProps = {}) {
 		this.id = props.id
 		this.skip = props.skip ?? 0
 		this.take = props.take ?? 30

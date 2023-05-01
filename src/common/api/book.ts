@@ -23,8 +23,8 @@ export const bookApi = {
 		return res.data
 	},
 
-	getBooks: async () => {
-		const res = await apiRequest.get<ResponseCatalog<BookModel>>(urls.book.getBooks)
+	getBooks: async (params: BaseRequestParams) => {
+		const res = await apiRequest.get<ResponseCatalog<BookModel>>(urls.book.getBooks, { params })
 		return res.data
 	},
 

@@ -1,6 +1,5 @@
 import { makeAutoObservable, toJS } from 'mobx'
-import { apiRequest, BaseRequestParams, bookApi, ChapterModel, ParagraphModel } from '@/common'
-import { bookStore, BookStore } from '@/enteties/book'
+import { BaseRequestParams, bookApi, ParagraphModel } from '@/common'
 
 class ParagraphStore {
 	loading = false
@@ -24,9 +23,11 @@ class ParagraphStore {
 		}
 	}
 
-	async loadChaptersWithParagraphs() {
-		try {
-		} catch (e) {}
+	clearStore = () => {
+		this.loading = false
+		this.paragraphs = []
+		this.firstParagraph = null
+		this.lastParagraph = null
 	}
 }
 

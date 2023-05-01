@@ -12,12 +12,19 @@ interface ComponentProps {
 	bookId: string
 }
 export const BookRead: FC<ComponentProps> = observer(({ bookId }) => {
-	const { paragraphs, firstParagraph, lastParagraph } = paragraphStore
+	const { paragraphs, firstParagraph, lastParagraph, clearStore } = paragraphStore
 
 	useEffect(() => {
 		if (!bookId) return
 		loadParagraphsByParams(new ParagraphRequestParams({ book_id: bookId }))
 	}, [bookId])
+
+	useEffect(
+		() => () => {
+			clearStore()
+		},
+		[]
+	)
 
 	const onScrollTop = () => {
 		if (firstParagraph?.id === paragraphs[0]?.id) return
