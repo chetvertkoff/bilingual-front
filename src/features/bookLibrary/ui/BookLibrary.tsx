@@ -8,7 +8,7 @@ import { ScrollContainer } from '@/features/bookLibrary/ui/ScrollContainer'
 const { loadBooks } = bookListStore
 
 export const BookLibrary = observer(() => {
-	const { bookList, total } = bookListStore
+	const { bookList, total, isLoading } = bookListStore
 	const navigate = useNavigate()
 	const currentLength = useRef(30)
 
@@ -17,7 +17,7 @@ export const BookLibrary = observer(() => {
 	}
 
 	const onScrollBottom = () => {
-		if (bookList.length >= total) return
+		if (isLoading || bookList.length >= total) return
 		currentLength.current += 30
 		loadBooks(
 			new BaseRequestParams({

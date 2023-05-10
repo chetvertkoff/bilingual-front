@@ -28,7 +28,11 @@ export const BookItemsComponent: FC<Props> = observer(({ onItemClick }) => {
 				{bookList.map((item) => (
 					<Grid item xs={2} key={item.id} onClick={() => onItemClick?.(item)}>
 						<Card>
-							<CardMedia component="img" image={noimage.default} />
+							{item.id}
+							<CardMedia
+								component="img"
+								image={item?.cover ? `data:image;base64,${item.cover}` : noimage.default}
+							/>
 							{item.progress && <LinearProgress variant="determinate" value={item.progress} />}
 						</Card>
 					</Grid>

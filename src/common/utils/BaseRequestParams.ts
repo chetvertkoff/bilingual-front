@@ -15,6 +15,6 @@ export class BaseRequestParams {
 		this.id = props.id
 		this.skip = props.skip ?? 0
 		this.take = props.take ?? 30
-		this.order = props.order ?? 'ASC'
+		this.order = props.order ?? 'DESC'
 	}
 }

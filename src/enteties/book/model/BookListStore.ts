@@ -14,10 +14,21 @@ export class BookListStore {
 	loadBooks = async (params: BaseRequestParams, clear?: boolean) => {
 		try {
 			this.isLoading = true
-			const res = await bookApi.getBooks(new BaseRequestParams({ ...params, order: 'DESC' }))
+			const res = await bookApi.getBooks(
+				new BaseRequestParams({ ...params, order: params.order ?? 'DESC' })
+			)
 			runInAction(() => {
-				this.bookList = clear ? res.entries : [...this.bookList, ...res.entries]
 				this.total = res.total
+
+				if (clear) {
+					this.bookList = res.entries
+					return
+				}
+
+				this.bookList =
+					params.order === 'ASC'
+						? [...res.entries, ...this.bookList]
+						: [...this.bookList, ...res.entries]
 			})
 			this.isLoading = false
 		} catch (e) {}
