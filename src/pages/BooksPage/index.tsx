@@ -1,7 +1,7 @@
 import React from 'react'
-import { BookUpload } from '@/features/bookUpload/ui'
 import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@mui/material'
-import { BookLibrary } from '@/features/bookLibrary'
+import { BookLibrary } from '@/widgets/bookLibrary'
+import { BookUpload } from '@/features/bookUploadInput'
 import './style.scss'
 
 const BooksPage = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { BookRead } from '@/features/bookRead'
+import { BookRead } from '@/widgets/readBook'
 
 const Book = () => {
 	const { id } = useParams()

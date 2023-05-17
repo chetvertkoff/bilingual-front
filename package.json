@@ -17,6 +17,7 @@
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
     "@types/react-router-dom": "^5.3.3",
+    "@types/uuid": "^9.0.1",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
@@ -55,6 +56,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.10.14",
     "@tanstack/react-virtual": "^3.0.0-beta.54",
     "axios": "^1.1.3",

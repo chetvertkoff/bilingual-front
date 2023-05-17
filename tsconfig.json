@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "types": ["webpack-env", "@types/jest"],
     "typeRoots": [
-      "./src/common/types/types.d.ts",
+      "./@/shared/types/types.d.ts"
     ],
     "isolatedModules": true,
     "paths": {
