@@ -9,9 +9,10 @@ import './style.scss'
 interface Props {
 	originalText: ParagraphModel['originalText']
 	translate: ParagraphModel['translate']
+	fontSize: string
 }
 
-export const Paragraph: FC<Props> = ({ originalText, translate }) => {
+export const Paragraph: FC<Props> = ({ originalText, translate, fontSize }) => {
 	const [showTranslate, setShowTranslate] = useState(false)
 
 	const splitTextCollection = splitParagraph(originalText)
@@ -19,7 +20,7 @@ export const Paragraph: FC<Props> = ({ originalText, translate }) => {
 	return (
 		<div className="paragraph">
 			<Box sx={{ display: 'flex' }}>
-				<Box sx={{ mt: '10px', mb: '10px' }}>
+				<Box sx={{ mt: '10px', mb: '10px', fontSize }}>
 					{splitTextCollection.map((word) => (
 						<Word key={word.id} word={word} />
 					))}

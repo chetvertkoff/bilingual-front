@@ -1,27 +1,17 @@
-import React, { FC, PropsWithChildren, useRef } from 'react'
+import React, { FC, useRef } from 'react'
 import { Callback } from '@/shared'
+import { useVirtualizer } from '@tanstack/react-virtual'
 
-interface Props extends PropsWithChildren {
+interface Props {
 	onTop?: Callback
 	onBottom?: Callback
+
+	children: Callback<unknown, JSX.Element>
+	items: { id: number }[]
 }
 
-export const BookScrollContainer: FC<Props> = ({ children, onBottom, onTop }) => {
+export const BookScrollContainer: FC<Props> = ({ children, onBottom, onTop, items }) => {
 	const container = useRef<HTMLDivElement>(null)
-	const scrollContainer = useRef<HTMLDivElement>(null)
-	const scrollContainerHeight = useRef()
-
-	// if (
-	// 	scrollContainerHeight.current &&
-	// 	scrollContainer.current &&
-	// 	scrollContainerHeight.current !== scrollContainer.current.scrollHeight
-	// ) {
-	// 	const isHigh =
-	// 		container.current?.clientHeight &&
-	// 		scrollContainer.current?.scrollHeight > container.current.clientHeight
-	// 	// onChangeScrollHeight?.(isHigh)
-	// 	console.log('change')
-	// }
 
 	const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
 		const { currentTarget } = e
@@ -33,18 +23,49 @@ export const BookScrollContainer: FC<Props> = ({ children, onBottom, onTop }) =>
 		}
 	}
 
+	const rowVirtualizer = useVirtualizer({
+		count: items.length,
+		getScrollElement: () => container.current,
+		estimateSize: (i) => {
+			const item = items[i]
+			if (item.tagName === 'p') return item.originalText.length / 5 + 20
+			return 90
+		},
+	})
+
 	return (
-		<div style={{ height: '100%' }} ref={container}>
+		<div
+			ref={container}
+			style={{
+				height: window.innerHeight,
+				overflow: 'auto', // Make it scroll!
+			}}
+			onScroll={onScroll}
+		>
 			<div
 				style={{
-					overflowY: 'auto',
+					height: `${rowVirtualizer.getTotalSize()}px`,
 					width: '100%',
+					position: 'relative',
 				}}
-				ref={scrollContainer}
-				className="book-read"
-				onScroll={onScroll}
 			>
-				{children}
+				{rowVirtualizer.getVirtualItems().map((virtualItem) => {
+					return (
+						<div
+							key={items[virtualItem.index].id}
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								width: '100%',
+								height: `${virtualItem.size}px`,
+								transform: `translateY(${virtualItem.start}px)`,
+							}}
+						>
+							{children(items[virtualItem.index])}
+						</div>
+					)
+				})}
 			</div>
 		</div>
 	)
