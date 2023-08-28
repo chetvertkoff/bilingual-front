@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { BaseRequestParams, Callback } from '@/shared'
 import { bookListStore } from '@/enteties/book/bookList/store/BookListStore'
-import { BookModel } from '@/shared/types/models/BookModel'
+import { BookModel } from '@/enteties/book/bookList/models/BookModel'
 import { toJS } from 'mobx'
 
 const { loadBooks } = bookListStore

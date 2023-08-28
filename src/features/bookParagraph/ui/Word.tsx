@@ -5,9 +5,10 @@ import { useTranslate } from '../lib'
 
 interface Props {
 	word: WordData
+	fontSize: string
 }
 
-export const Word: FC<Props> = memo(({ word: { text, needTranslate } }) => {
+export const Word: FC<Props> = memo(({ word: { text, needTranslate }, fontSize }) => {
 	const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 	const { loading, translate, loadTranslate } = useTranslate()
 
@@ -36,7 +37,7 @@ export const Word: FC<Props> = memo(({ word: { text, needTranslate } }) => {
 					horizontal: 'center',
 				}}
 			>
-				{loading ? 'Загрузка' : <Typography sx={{ p: 2 }}>{translate}</Typography>}
+				{loading ? 'Загрузка' : <Typography sx={{ p: 2, fontSize }}>{translate}</Typography>}
 			</Popover>
 			<span style={needTranslate ? { textDecoration: 'underline' } : {}} onClick={handleClick}>
 				{text}

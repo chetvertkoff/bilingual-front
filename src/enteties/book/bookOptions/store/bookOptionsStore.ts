@@ -1,13 +1,25 @@
 import { makeAutoObservable } from 'mobx'
-import { BookOptions } from '../types'
+import { bookOptionsApi } from '@/enteties/book/bookOptions'
+import { BookOptions } from '../models'
 
-class BookOptionsStore {
-	options: BookOptions = {
-		fontSizeLevel: 1,
-	}
+export class BookOptionsStore {
+	options: BookOptions | null = null
 
 	constructor() {
 		makeAutoObservable(this)
+	}
+
+	getOptions = async () => {
+		try {
+			this.options = await bookOptionsApi.getOptions()
+		} catch (e) {}
+	}
+
+	setOptions = async (options: BookOptions) => {
+		try {
+			this.options = options
+			await bookOptionsApi.saveOptions(options)
+		} catch (e) {}
 	}
 }
 

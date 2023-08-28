@@ -61,7 +61,7 @@ class SocketNotification {
 			connectionId,
 			type: SocketEvents.OPEN,
 			// TODO заменить на переменную
-			payload: 'ws://localhost:27800/?userId=15',
+			payload: `ws://localhost:27800/?userId=${connectionId}`,
 		})
 	}
 

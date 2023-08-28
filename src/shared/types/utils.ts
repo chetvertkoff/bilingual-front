@@ -1,1 +1,1 @@
-export type Callback<T = unknown, R = unknown> = (...args: T[]) => R
+export type Callback<T = unknown, R = void> = (...args: T[]) => R

@@ -1,4 +1,4 @@
-import { BaseModel } from './BaseModel'
+import { BaseModel } from '@/shared'
 
 export interface BookModel extends BaseModel {
 	progress: number

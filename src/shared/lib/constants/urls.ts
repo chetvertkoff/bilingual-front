@@ -7,4 +7,7 @@ export const urls = {
 		getChapters: 'book/chapter',
 		getParagraph: 'book/paragraph',
 	},
+	user: {
+		bookOptions: 'user/book-options',
+	},
 }

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Box, ClickAwayListener, Tooltip, Typography } from '@mui/material'
 import { ParagraphModel } from '@/enteties/book/paragraph'
 import GTranslateIcon from '@mui/icons-material/GTranslate'
@@ -14,6 +14,15 @@ interface Props {
 
 export const Paragraph: FC<Props> = ({ originalText, translate, fontSize }) => {
 	const [showTranslate, setShowTranslate] = useState(false)
+	const [renderFull, setRenderFull] = useState(false)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setRenderFull(true)
+		}, 2000)
+	}, [])
+
+	if (!renderFull) return <Box sx={{ mt: '10px', mb: '10px', fontSize }}>{originalText}</Box>
 
 	const splitTextCollection = splitParagraph(originalText)
 
@@ -22,10 +31,10 @@ export const Paragraph: FC<Props> = ({ originalText, translate, fontSize }) => {
 			<Box sx={{ display: 'flex' }}>
 				<Box sx={{ mt: '10px', mb: '10px', fontSize }}>
 					{splitTextCollection.map((word) => (
-						<Word key={word.id} word={word} />
+						<Word key={word.id} word={word} fontSize={fontSize} />
 					))}
 				</Box>
-				<Box sx={{ p: '10px', display: 'flex', alignItems: 'center' }}>
+				<Box sx={{ pl: '10px', display: 'flex', alignItems: 'center' }}>
 					<ClickAwayListener onClickAway={() => setShowTranslate(false)}>
 						<div>
 							<Tooltip
@@ -38,11 +47,14 @@ export const Paragraph: FC<Props> = ({ originalText, translate, fontSize }) => {
 								disableFocusListener
 								disableHoverListener
 								disableTouchListener
-								title={<Typography color="inherit">{translate}</Typography>}
-								placement="top-start"
+								title={
+									<Typography sx={{ fontSize }} color="inherit">
+										{translate}
+									</Typography>
+								}
 							>
 								<div className="paragraph__icon" onClick={() => setShowTranslate(!showTranslate)}>
-									<GTranslateIcon sx={{ fontSize: 20 }} />
+									<GTranslateIcon sx={{ fontSize }} />
 								</div>
 							</Tooltip>
 						</div>

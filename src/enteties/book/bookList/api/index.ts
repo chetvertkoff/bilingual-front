@@ -1,4 +1,5 @@
-import { apiRequest, BaseRequestParams, BookModel, ResponseCatalog, urls } from '@/shared'
+import { apiRequest, BaseRequestParams, ResponseCatalog, urls } from '@/shared'
+import { BookModel } from '../models'
 
 export const bookListApi = {
 	getBooks: async (params: BaseRequestParams) => {
